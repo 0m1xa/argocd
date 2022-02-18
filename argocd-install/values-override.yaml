@@ -14,3 +14,9 @@ argo-cd:
         - name: argo-helm
           type: helm
           url: https://argoproj.github.io/argo-helm
+      accounts.image-updater: apiKey
+    rbacConfig:
+      policy.csv: |
+        p, role:image-updater, applications, get, */*, allow
+        p, role:image-updater, applications, update, */*, allow
+        g, image-updater, role:image-updater
