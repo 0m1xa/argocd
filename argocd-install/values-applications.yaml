@@ -1,19 +1,5 @@
 argo-cd:
-  ## ArgoCD configuration
-  ## Ref: https://github.com/argoproj/argo-cd
-  ##
-  ## Server
   server:
-    ## ArgoCD config
-    ## reference https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
-    configEnabled: true
-    config:
-      repositories: |
-        - type: git
-          url: https://github.com/kurtburak/argocd.git
-        - name: argo-helm
-          type: helm
-          url: https://argoproj.github.io/argo-helm
     additionalApplications: 
       - name: argocd
         namespace: argocd
@@ -25,8 +11,6 @@ argo-cd:
           helm:
             valueFiles:
             - ../values-override.yaml
-            - ../values-applications.yaml
-            - ../values-appprojects.yaml
           path: argocd-install/argo-cd
           repoURL: https://github.com/0m1xa/argocd.git
           targetRevision: HEAD
@@ -67,19 +51,3 @@ argo-cd:
           automated:
             selfHeal: true
             prune: true
-    additionalProjects: 
-    - name: argocd
-      namespace: argocd
-      additionalLabels: {}
-      additionalAnnotations: {}
-      description: Argocd Project
-      sourceRepos:
-      - '*'
-      destinations:
-      - namespace: argocd
-        server: https://kubernetes.default.svc
-      clusterResourceWhitelist:
-      - group: '*'
-        kind: '*'
-      orphanedResources:
-        warn: false
