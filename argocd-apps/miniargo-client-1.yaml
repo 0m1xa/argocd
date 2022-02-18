@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: miniargo-client-1
     server: https://kubernetes.default.svc
-  project: sample-project
+  project: miniargo-client-1
   source:
     helm:
       valueFiles:
