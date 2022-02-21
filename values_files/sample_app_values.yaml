@@ -1,4 +1,4 @@
 nginx:
   image:
     name: nginx
-    tag: 1.15
+    tag: 1.15.12
